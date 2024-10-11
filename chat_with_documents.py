@@ -81,13 +81,4 @@ if __name__ == "--main--":
         chunk_size = st.number_input('Chunk size:', min_value=100, max_value=2048, value=512)
         k = st.number_input('k', min_value=1, max_value=20, value=3)
         add_data = st.button('Add Data')
-
-
-
-
-
-
-
-        
-
         
