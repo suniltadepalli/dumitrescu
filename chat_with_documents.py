@@ -66,7 +66,7 @@ def calculate_embedding_cost(texts):
     return total_tokens, total_tokens / 1000 * 0.0004
 
 
-if __name__ == "--main--":
+if __name__ == "__main__":
     import os
     from dotenv import load_dotenv, find_dotenv
     load_dotenv(find_dotenv(), override=True)
