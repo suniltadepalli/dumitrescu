@@ -1,6 +1,7 @@
 import streamlit as st
 from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
+import os
 
 def load_document(file):
     import os
