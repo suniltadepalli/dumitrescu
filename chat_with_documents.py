@@ -71,6 +71,7 @@ if __name__ == "--main--":
     from dotenv import load_dotenv, find_dotenv
     load_dotenv(find_dotenv(), override=True)
 
+    st.title('LLM Question-Answering Application')
     st.image('img.png')
     st.subheader('LLM Question-Answering Application')
     with st.sidebar:
