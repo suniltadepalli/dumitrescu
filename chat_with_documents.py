@@ -1,4 +1,6 @@
-# When using streamlit, it is very importaant to add all the requirements to the requirements.txt file
+# When using streamlit, it is very importaant to add all the requirements to the requirements.txt file.
+# When deployed to the streamlit cloud, the requirements.txt file is used to install the necessary packages.
+# You have to update the public github repository with the latest changes before deploying to the streamlit cloud.
 
 import streamlit as st
 from langchain_community.embeddings import OpenAIEmbeddings
