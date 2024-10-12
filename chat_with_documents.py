@@ -1,3 +1,5 @@
+# When using streamlit, it is very importaant to add all the requirements to the requirements.txt file
+
 import streamlit as st
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
