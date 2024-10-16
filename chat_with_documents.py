@@ -89,22 +89,22 @@ if __name__ == "__main__":
         add_data = st.button('Add Data')
 
         if uploaded_file and add_data:
-            st.spinner('Reading, chunking and embedding file...')
-            bytes_data = uploaded_file.read()
-            file_name = os.path.join('./', uploaded_file.name)
-            with open(file_name, 'wb') as f:
-                f.write(bytes_data)
+            with st.spinner('Reading, chunking and embedding file...'):
+                bytes_data = uploaded_file.read()
+                file_name = os.path.join('./', uploaded_file.name)
+                with open(file_name, 'wb') as f:
+                    f.write(bytes_data)
 
-            data = load_document(file_name)
-            chunks = chunk_data(data, chunk_size=chunk_size)
-            st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
+                data = load_document(file_name)
+                chunks = chunk_data(data, chunk_size=chunk_size)
+                st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
 
-            tokens, embedding_cost = calculate_embedding_cost(chunks)
-            st.write(f'Embedding cost: ${embedding_cost:.4f}')
+                tokens, embedding_cost = calculate_embedding_cost(chunks)
+                st.write(f'Embedding cost: ${embedding_cost:.4f}')
             
-            vector_store = create_embeddings(chunks)
+                vector_store = create_embeddings(chunks)
 
-            st.session_state.vs = vector_store
-            st.success('File uploaded, chunked and embedded successfully!')
+                st.session_state.vs = vector_store
+                st.success('File uploaded, chunked and embedded successfully!')
 
 
