@@ -3,7 +3,7 @@
 # You have to update the public github repository with the latest changes before deploying to the streamlit cloud.
 
 import streamlit as st
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 import os
 
@@ -20,8 +20,8 @@ def load_document(file):
         print(f'Loading {file}')
         loader = Docx2txtLoader(file)
     elif extension == '.txt':
-        from langchain.document_loaders import TextLoader
-        loader = TextLoader(file)
+        from langchain_community.document_loaders import TextLoader
+        loader = TextLoader(file, encoding='utf-8')
     else:
         print(f'File type {extension} not supported')
         return None
@@ -87,5 +87,26 @@ if __name__ == "__main__":
         chunk_size = st.number_input('Chunk size:', min_value=100, max_value=2048, value=512)
         k = st.number_input('k', min_value=1, max_value=20, value=3)
         add_data = st.button('Add Data')
+
+        if uploaded_file and add_data:
+            with st.spinner('Reading, chunking and embedding file...'):
+                bytes_data = uploaded_file.read()
+                file_name = os.path.join('./', uploaded_file.name)
+                with open(file_name, 'wb') as f:
+                    f.write(bytes_data)
+
+                data = load_document(file_name)
+                chunks = chunk_data(data, chunk_size=chunk_size)
+                st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
+
+                tokens, embedding_cost = calculate_embedding_cost(chunks)
+                st.write(f'Embedding cost: ${embedding_cost:.4f}')
+
+                vector_store = create_embeddings(chunks)
+                
+                st.session_state.vs = vector_store
+                st.success('File uploaded, chunked and embedded successfully')
+
+
 
 

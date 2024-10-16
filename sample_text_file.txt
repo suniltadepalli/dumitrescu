@@ -1,0 +1,10 @@
+Sample Text File
+---------------------
+
+This is a sample text file created for demonstration purposes. The content is designed to fit roughly one page when viewed in most text editors.
+
+It contains a title, a horizontal divider, and this body of text. Text files are versatile and can be used for various purposes, from simple note-taking to complex data storage.
+
+Feel free to modify this template as needed to suit your specific use case.
+
+Thank you for using this sample text file for testing purposes.
